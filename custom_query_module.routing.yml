@@ -1,0 +1,8 @@
+custom_query_module.export_csv:
+  path: '/custom-query/export-csv'
+  defaults:
+    _controller: '\Drupal\custom_query_module\Controller\CustomQueryController::exportCsv'
+    _title: 'Export Static Query to CSV'
+  requirements:
+    _role: 'authenticated'
+
