@@ -16,6 +16,7 @@ class CustomQueryController {
         $nodeval = strval($node);
         $buildquery = "
             -- ADD SQL HERE
+            -- Don't Forget The $param
             ";
         $result = $database->query($buildquery);
 
