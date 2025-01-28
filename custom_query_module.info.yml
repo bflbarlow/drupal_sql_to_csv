@@ -1,7 +1,7 @@
 name: 'Custom Query Module'
 type: module
 description: 'Provides static queries and exports results to CSV.'
-core_version_requirement: ^10
+core_version_requirement: ">=10"
 package: Custom
 dependencies:
   - drupal:views
