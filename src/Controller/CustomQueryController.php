@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\advertising_details\Controller;
+namespace Drupal\custom_query_module\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
