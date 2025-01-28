@@ -1,21 +1,22 @@
 <?php
 
-namespace Drupal\custom_query_module\Controller;
+namespace Drupal\advertising_details\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class CustomQueryController {
-    public function exportCsv() {
+    public function exportCsv($param) {
         // Define your static query
 
         $database = \Drupal::database();
         $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
         $uid= $user->get('uid')->value;
+        $node = \Drupal::routeMatch()->getRawParameter('node');
+        $nodeval = strval($node);
         $buildquery = "
-        Select 'id' as id, 'date' as date, 'user_id' as user_id
-        Union All
-        select al.id, al.date, al.user_id From AdvertisementLog al where al.user_id = ".$uid." 
-        order by id desc";
+            -- ADD SQL HERE
+            ";
         $result = $database->query($buildquery);
 
         // Prepare CSV content
@@ -24,9 +25,11 @@ class CustomQueryController {
             $csv_data[] = (array) $row;
         }
 
+        $date = date('YmdHis', time());
+
         $response = new Response();
         $response->headers->set('Content-Type', 'text/csv');
-        $response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
+        $response->headers->set('Content-Disposition', 'attachment; filename="filename'.$date.'.csv"');
 
         // Write the CSV content
         $handle = fopen('php://temp', 'rw');
